@@ -1,9 +1,33 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { Button } from "react-native-elements";
+import { Text, FlatList, StyleSheet } from "react-native";
+import { Card, Button } from "react-native-elements";
+
+import { DATA } from "../data";
 
 export const MainSreen = ({ navigation }) => {
-  const { center } = styles;
+  const keyExtractor = (item, index) => item.id.toString();
+
+  const renderItem = ({ item }) => (
+    <Card
+      image={{
+        uri: item.img
+      }}
+      title={item.text}
+    >
+      <Text style={{ marginBottom: 10 }}>
+        {new Date(item.date).toLocaleDateString()}
+      </Text>
+      <Button
+        buttonStyle={{
+          borderRadius: 0,
+          marginLeft: 0,
+          marginRight: 0,
+          marginBottom: 0
+        }}
+        title="Открыть запись"
+      />
+    </Card>
+  );
 
   const goToPost = () => {
     const { navigate } = navigation;
@@ -11,23 +35,10 @@ export const MainSreen = ({ navigation }) => {
   };
 
   return (
-    <View style={center}>
-      <Text>MainSreen</Text>
-
-      <Button title="Перейти к посту" onPress={goToPost} />
-    </View>
+    <FlatList keyExtractor={keyExtractor} data={DATA} renderItem={renderItem} />
   );
 };
 
 MainSreen.navigationOptions = {
   title: "Главная"
 };
-
-const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
