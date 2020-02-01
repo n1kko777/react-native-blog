@@ -1,8 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-export const PostScreen = () => {
+export const PostScreen = ({ navigation }) => {
+  const postId = navigation.getParam("postId");
   const { center } = styles;
+
   return (
     <View style={center}>
       <Text>postScreen</Text>
@@ -10,8 +12,14 @@ export const PostScreen = () => {
   );
 };
 
-PostScreen.navigationOptions = {
-  title: "Пост 100500"
+PostScreen.navigationOptions = ({ navigation }) => {
+  const postTitle = navigation.getParam("postTitle");
+
+  console.log("postTitle :", postTitle);
+
+  return {
+    title: postTitle
+  };
 };
 
 const styles = StyleSheet.create({

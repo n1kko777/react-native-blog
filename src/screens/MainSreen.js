@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, FlatList, StyleSheet } from "react-native";
+import { Text, FlatList } from "react-native";
 import { Card, Button } from "react-native-elements";
 
 import { DATA } from "../data";
@@ -25,13 +25,14 @@ export const MainSreen = ({ navigation }) => {
           marginBottom: 0
         }}
         title="Открыть запись"
+        onPress={() => onOpenPostHandler(item)}
       />
     </Card>
   );
 
-  const goToPost = () => {
+  const onOpenPostHandler = post => {
     const { navigate } = navigation;
-    navigate("Post");
+    navigate("Post", { postId: post.id, postTitle: post.text });
   };
 
   return (
