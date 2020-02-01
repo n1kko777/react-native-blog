@@ -17,6 +17,7 @@ const PostNavigation = createStackNavigator(
   {
     initialRoute: "Main",
     defaultNavigationOptions: {
+      headerBackTitle: "Назад",
       headerStyle: {
         backgroundColor: Platform.OS === "android" ? THEME.MAIN_COLOR : "#fff"
       },
