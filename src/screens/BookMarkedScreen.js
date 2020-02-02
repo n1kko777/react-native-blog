@@ -11,5 +11,5 @@ export const BookMarkedScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  center: { justifyContent: "center", alignItems: "center" }
+  center: { flex: 1, justifyContent: "center", alignItems: "center" }
 });
