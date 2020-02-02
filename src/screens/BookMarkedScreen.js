@@ -13,16 +13,16 @@ export const BookMarkedScreen = ({ navigation }) => {
   );
 };
 
-BookMarkedScreen.navigationOptions = {
-  title: "Избранные",
-  headerTitle: "Избранные",
+BookMarkedScreen.navigationOptions = ({ navigation }) => ({
+  title: "Избранное",
+  headerTitle: "Избранное",
   headerLeft: () => (
     <HeaderButtons HeaderButtonComponent={AppHeaderIcons}>
       <Item
         title="Toggle Drawer"
         iconName="ios-menu"
-        onPress={() => console.log("Toggle Drawer")}
+        onPress={() => navigation.toggleDrawer()}
       />
     </HeaderButtons>
   )
-};
+});

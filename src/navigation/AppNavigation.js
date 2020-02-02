@@ -81,14 +81,26 @@ const BottomNavogator =
         }
       });
 
+const AboutNavigator = createStackNavigator(
+  {
+    About: AboutScreen
+  },
+  navogatorOptions
+);
+
+const CreateNavigator = createStackNavigator(
+  {
+    Create: CreateScreen
+  },
+  navogatorOptions
+);
+
 const RouteConfigs = {
   PostTabs: {
     screen: BottomNavogator
   },
-  About: {
-    screen: AboutScreen
-  },
-  Create: CreateScreen
+  About: AboutNavigator,
+  Create: CreateNavigator
 };
 
 const MainNavigator = createDrawerNavigator(
