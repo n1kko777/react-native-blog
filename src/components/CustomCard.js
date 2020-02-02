@@ -1,6 +1,7 @@
 import React from "react";
-import { Platform, Text } from "react-native";
-import { Card, Button } from "react-native-elements";
+import { Card, Text } from "react-native-elements";
+
+import { CustomButton } from "./CustomButton";
 
 export const CustomCard = ({ item, theme, navigation }) => {
   const onOpenPostHandler = post => {
@@ -22,23 +23,10 @@ export const CustomCard = ({ item, theme, navigation }) => {
       <Text style={{ marginBottom: 10 }}>
         {new Date(item.date).toLocaleDateString()}
       </Text>
-      <Button
-        buttonStyle={{
-          borderRadius: 0,
-          marginLeft: 0,
-          marginRight: 0,
-          marginBottom: 0
-        }}
+      <CustomButton
         title="Открыть запись"
-        onPress={() => onOpenPostHandler(item)}
-        type={Platform.OS === "ios" ? "clear" : "solid"}
-        buttonStyle={{
-          backgroundColor:
-            Platform.OS === "ios" ? "transparent" : theme.colors.primary
-        }}
-        titleStyle={{
-          color: Platform.OS === "ios" ? theme.colors.primary : "#fff"
-        }}
+        onClick={() => onOpenPostHandler(item)}
+        color={theme.colors.primary}
       />
     </Card>
   );

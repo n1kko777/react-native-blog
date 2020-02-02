@@ -1,19 +1,14 @@
 import React, { useEffect, useCallback } from "react";
-import {
-  View,
-  ScrollView,
-  Image,
-  Alert,
-  Platform,
-  StyleSheet
-} from "react-native";
-import { Button, Text } from "react-native-elements";
+import { View, ScrollView, Image, Alert, StyleSheet } from "react-native";
+import { Text } from "react-native-elements";
 
 import { THEME } from "../theme";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { AppHeaderIcons } from "../components/AppHeaderIcons";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleBooked, removePost } from "../store/actions/post";
+
+import { CustomButton } from "../components/CustomButton";
 
 export const PostScreen = ({ navigation }) => {
   const postId = navigation.getParam("postId");
@@ -79,17 +74,10 @@ export const PostScreen = ({ navigation }) => {
 
         <Text style={p}>Создано {new Date(date).toLocaleDateString()}</Text>
 
-        <Button
+        <CustomButton
           title="Удалить пост"
-          type={Platform.OS === "ios" ? "clear" : "solid"}
-          buttonStyle={{
-            backgroundColor:
-              Platform.OS === "ios" ? "transparent" : THEME.DANGER_COLOR
-          }}
-          titleStyle={{
-            color: Platform.OS === "ios" ? THEME.DANGER_COLOR : "#fff"
-          }}
-          onPress={onDelete}
+          onClick={onDelete}
+          color={THEME.DANGER_COLOR}
         />
       </View>
     </ScrollView>
