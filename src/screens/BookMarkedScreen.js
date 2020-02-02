@@ -1,30 +1,17 @@
 import React from "react";
-import { FlatList, View } from "react-native";
-import { withTheme } from "react-native-elements";
-
-import { DATA } from "../data";
-import { CustomCard } from "../components/CustomCard";
-
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { AppHeaderIcons } from "../components/AppHeaderIcons";
+import { PostList } from "../components/PostList";
+import { DATA } from "../data";
 
-export const BookMarkedScreen = withTheme(({ navigation, theme }) => {
-  const keyExtractor = item => item.id.toString();
-
-  const renderItem = ({ item }) => (
-    <CustomCard item={item} theme={theme} navigation={navigation} />
-  );
-
+export const BookMarkedScreen = ({ navigation }) => {
   return (
-    <FlatList
-      ListFooterComponent={<View></View>}
-      ListFooterComponentStyle={{ paddingBottom: 30 }}
-      keyExtractor={keyExtractor}
-      data={DATA.filter(elem => elem.booked)}
-      renderItem={renderItem}
+    <PostList
+      navigation={navigation}
+      dataList={DATA.filter(elem => elem.booked)}
     />
   );
-});
+};
 
 BookMarkedScreen.navigationOptions = {
   title: "Избранные",

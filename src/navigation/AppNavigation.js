@@ -15,23 +15,22 @@ import { createMaterialBottomTabNavigator } from "react-navigation-material-bott
 
 import { THEME } from "../theme";
 
+const navogatorOptions = {
+  defaultNavigationOptions: {
+    headerBackTitle: "Назад",
+    headerStyle: {
+      backgroundColor: Platform.OS === "android" ? THEME.MAIN_COLOR : "#fff"
+    },
+    headerTintColor: Platform.OS === "android" ? "#fff" : THEME.MAIN_COLOR
+  }
+};
+
 const PostNavigator = createStackNavigator(
   {
     Main: MainSreen,
-    Post: {
-      screen: PostScreen
-    }
+    Post: PostScreen
   },
-  {
-    initialRouteName: "Main",
-    defaultNavigationOptions: {
-      headerBackTitle: "Назад",
-      headerStyle: {
-        backgroundColor: Platform.OS === "android" ? THEME.MAIN_COLOR : "#fff"
-      },
-      headerTintColor: Platform.OS === "android" ? "#fff" : THEME.MAIN_COLOR
-    }
-  }
+  navogatorOptions
 );
 
 const BookedNavigator = createStackNavigator(
@@ -39,15 +38,7 @@ const BookedNavigator = createStackNavigator(
     Booked: BookMarkedScreen,
     Post: PostScreen
   },
-  {
-    defaultNavigationOptions: {
-      headerBackTitle: "Назад",
-      headerStyle: {
-        backgroundColor: Platform.OS === "android" ? THEME.MAIN_COLOR : "#fff"
-      },
-      headerTintColor: Platform.OS === "android" ? "#fff" : THEME.MAIN_COLOR
-    }
-  }
+  navogatorOptions
 );
 
 const bottomTabsConfig = {
