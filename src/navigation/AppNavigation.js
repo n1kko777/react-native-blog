@@ -9,9 +9,13 @@ import { createBottomTabNavigator } from "react-navigation-tabs";
 
 import { MainSreen } from "../screens/MainSreen";
 import { PostScreen } from "../screens/PostScreen";
+import { AboutScreen } from "../screens/AboutScreen";
+import { CreateScreen } from "../screens/CreateScreen";
 import { BookMarkedScreen } from "../screens/BookMarkedScreen";
 
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
+
+import { createDrawerNavigator } from "react-navigation-drawer";
 
 import { THEME } from "../theme";
 
@@ -77,4 +81,19 @@ const BottomNavogator =
         }
       });
 
-export const AppNavigation = createAppContainer(BottomNavogator);
+const RouteConfigs = {
+  PostTabs: {
+    screen: BottomNavogator
+  },
+  About: {
+    screen: AboutScreen
+  },
+  Create: CreateScreen
+};
+
+const MainNavigator = createDrawerNavigator(
+  RouteConfigs
+  // DrawerNavigatorConfig
+);
+
+export const AppNavigation = createAppContainer(MainNavigator);
