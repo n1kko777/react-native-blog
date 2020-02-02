@@ -8,15 +8,21 @@ import {
   StyleSheet
 } from "react-native";
 import { Button, Text } from "react-native-elements";
-import { DATA } from "../data";
+
 import { THEME } from "../theme";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { AppHeaderIcons } from "../components/AppHeaderIcons";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleBooked } from "../store/actions/post";
+import { toggleBooked, removePost } from "../store/actions/post";
 
 export const PostScreen = ({ navigation }) => {
   const postId = navigation.getParam("postId");
+
+  const { image, container, h4, p } = styles;
+
+  const post = useSelector(state =>
+    state.post.allPosts.find(post => post.id === postId)
+  );
 
   const booked = useSelector(state =>
     state.post.bookedPosts.some(post => post.id === postId)
@@ -35,13 +41,9 @@ export const PostScreen = ({ navigation }) => {
     navigation.setParams({ toggleHandler });
   }, [toggleHandler]);
 
-  const { image, container, h4, p } = styles;
-
-  const { img, text, date } = DATA.find(elem => elem.id === postId);
-
   const onDelete = () => {
     Alert.alert(
-      "Удаление поста ",
+      "Удаление поста",
       "Вы точно хотите удалить пост?",
       [
         {
@@ -51,12 +53,21 @@ export const PostScreen = ({ navigation }) => {
         {
           text: "Удалить",
           style: "destructive",
-          onPress: () => console.log("Deleted!")
+          onPress: () => {
+            navigation.navigate("Main");
+            dispatch(removePost(postId));
+          }
         }
       ],
       { cancelable: false }
     );
   };
+
+  if (!post) {
+    return null;
+  }
+
+  const { img, text, date } = post;
 
   return (
     <ScrollView>
