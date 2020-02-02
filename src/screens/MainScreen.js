@@ -5,11 +5,11 @@ import { AppHeaderIcons } from "../components/AppHeaderIcons";
 
 import { PostList } from "../components/PostList";
 
-export const MainSreen = ({ navigation }) => {
+export const MainScreen = ({ navigation }) => {
   return <PostList navigation={navigation} dataList={DATA} />;
 };
 
-MainSreen.navigationOptions = ({ navigation }) => ({
+MainScreen.navigationOptions = ({ navigation }) => ({
   title: "Главная",
   headerTitle: "Главная",
   headerRight: () => (
@@ -17,7 +17,7 @@ MainSreen.navigationOptions = ({ navigation }) => ({
       <Item
         title="Take photo"
         iconName="ios-camera"
-        onPress={() => console.log("Take photo")}
+        onPress={() => navigation.push("Create")}
       />
     </HeaderButtons>
   ),

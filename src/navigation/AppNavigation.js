@@ -7,7 +7,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { createBottomTabNavigator } from "react-navigation-tabs";
 
-import { MainSreen } from "../screens/MainSreen";
+import { MainScreen } from "../screens/MainScreen";
 import { PostScreen } from "../screens/PostScreen";
 import { AboutScreen } from "../screens/AboutScreen";
 import { CreateScreen } from "../screens/CreateScreen";
@@ -31,7 +31,7 @@ const navogatorOptions = {
 
 const PostNavigator = createStackNavigator(
   {
-    Main: MainSreen,
+    Main: MainScreen,
     Post: PostScreen
   },
   navogatorOptions
