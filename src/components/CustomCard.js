@@ -5,7 +5,11 @@ import { Card, Button } from "react-native-elements";
 export const CustomCard = ({ item, theme, navigation }) => {
   const onOpenPostHandler = post => {
     const { navigate } = navigation;
-    navigate("Post", { postId: post.id, postTitle: post.text });
+    navigate("Post", {
+      postId: post.id,
+      postTitle: post.text,
+      booked: post.booked
+    });
   };
 
   return (
@@ -27,7 +31,7 @@ export const CustomCard = ({ item, theme, navigation }) => {
         }}
         title="Открыть запись"
         onPress={() => onOpenPostHandler(item)}
-        type={Platform.OS === "ios" ? "clear" : ""}
+        type={Platform.OS === "ios" ? "clear" : "solid"}
         buttonStyle={{
           backgroundColor:
             Platform.OS === "ios" ? "transparent" : theme.colors.primary

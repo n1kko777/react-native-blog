@@ -15,7 +15,7 @@ const PostNavigation = createStackNavigator(
     }
   },
   {
-    initialRoute: "Main",
+    initialRouteName: "Main",
     defaultNavigationOptions: {
       headerBackTitle: "Назад",
       headerStyle: {

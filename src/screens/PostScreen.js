@@ -10,6 +10,8 @@ import {
 import { Button, Text } from "react-native-elements";
 import { DATA } from "../data";
 import { THEME } from "../theme";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import { AppHeaderIcons } from "../components/AppHeaderIcons";
 
 export const PostScreen = ({ navigation }) => {
   const { image, container, h4, p } = styles;
@@ -49,7 +51,7 @@ export const PostScreen = ({ navigation }) => {
 
         <Button
           title="Удалить пост"
-          type={Platform.OS === "ios" ? "clear" : ""}
+          type={Platform.OS === "ios" ? "clear" : "solid"}
           buttonStyle={{
             backgroundColor:
               Platform.OS === "ios" ? "transparent" : THEME.DANGER_COLOR
@@ -66,9 +68,20 @@ export const PostScreen = ({ navigation }) => {
 
 PostScreen.navigationOptions = ({ navigation }) => {
   const postTitle = navigation.getParam("postTitle");
-
+  const postBooked = navigation.getParam("booked");
+  const iconName = postBooked ? "ios-star" : "ios-star-outline";
   return {
-    title: postTitle
+    title: postTitle,
+    headerTitle: postTitle,
+    headerRight: () => (
+      <HeaderButtons HeaderButtonComponent={AppHeaderIcons}>
+        <Item
+          title="Save post"
+          iconName={iconName}
+          onPress={() => console.log("Save post")}
+        />
+      </HeaderButtons>
+    )
   };
 };
 
