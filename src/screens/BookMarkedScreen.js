@@ -1,16 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { AppHeaderIcons } from "../components/AppHeaderIcons";
 import { PostList } from "../components/PostList";
-import { DATA } from "../data";
+
+import { useSelector } from "react-redux";
 
 export const BookMarkedScreen = ({ navigation }) => {
-  return (
-    <PostList
-      navigation={navigation}
-      dataList={DATA.filter(elem => elem.booked)}
-    />
-  );
+  const bookedPosts = useSelector(state => state.post.bookedPosts);
+
+  return <PostList navigation={navigation} dataList={bookedPosts} />;
 };
 
 BookMarkedScreen.navigationOptions = ({ navigation }) => ({
