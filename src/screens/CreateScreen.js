@@ -29,7 +29,6 @@ export const CreateScreen = ({ navigation }) => {
       title,
       text,
       booked: false,
-      id: Date.now().toString(),
       date: new Date().toJSON()
     };
 
