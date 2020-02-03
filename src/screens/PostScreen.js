@@ -13,28 +13,27 @@ import { CustomButton } from "../components/CustomButton";
 export const PostScreen = ({ navigation }) => {
   const postId = navigation.getParam("postId");
 
-  const { image, container, h4, p } = styles;
-
-  const post = useSelector(state =>
-    state.post.allPosts.find(post => post.id === postId)
-  );
-
   const booked = useSelector(state =>
     state.post.bookedPosts.some(post => post.id === postId)
   );
 
+  const post = useSelector(state =>
+    state.post.allPosts.find(post => post.id === postId)
+  );
   useEffect(() => {
     navigation.setParams({ booked });
   }, [booked]);
 
   const dispatch = useDispatch();
   const toggleHandler = useCallback(() => {
-    dispatch(toggleBooked(postId));
-  }, [dispatch, postId]);
+    dispatch(toggleBooked(post));
+  }, [dispatch, post]);
 
   useEffect(() => {
     navigation.setParams({ toggleHandler });
   }, [toggleHandler]);
+
+  const { image, container, h4, p } = styles;
 
   const onDelete = () => {
     Alert.alert(

@@ -64,7 +64,7 @@ export const CreateScreen = ({ navigation }) => {
             color={THEME.MAIN_COLOR}
             buttonStyle={{ marginTop: 30 }}
             onClick={saveHandler}
-            disabled={!text}
+            disabled={!title}
           />
         </View>
       </TouchableWithoutFeedback>

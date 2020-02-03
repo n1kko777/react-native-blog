@@ -5,11 +5,15 @@ import { DB } from "../../db";
 export const loadPosts = () => async dispatch =>
   dispatch({ type: LOAD_POSTS, payload: await DB.getPosts() });
 
-export const toggleBooked = id => disptch =>
-  disptch({ type: TOGGLE_BOOKED, payload: id });
+export const toggleBooked = post => async disptch => {
+  await DB.updatePost(post);
+  return disptch({ type: TOGGLE_BOOKED, payload: post.id });
+};
 
-export const removePost = id => dispatch =>
-  dispatch({ type: REMOVE_POST, payload: id });
+export const removePost = id => async dispatch => {
+  await DB.removePost(id);
+  return dispatch({ type: REMOVE_POST, payload: id });
+};
 
 export const addPost = post => async dispatch => {
   const fileName = post.img.split("/").pop();
