@@ -7,7 +7,9 @@ export const CustomButton = ({
   onClick,
   color,
   buttonStyle,
-  titleStyle
+  titleStyle,
+  icon,
+  disabled
 }) => {
   return (
     <Button
@@ -22,6 +24,8 @@ export const CustomButton = ({
         color: Platform.OS === "ios" ? color : "#fff",
         ...titleStyle
       }}
+      icon={icon}
+      disabled={disabled}
     />
   );
 };

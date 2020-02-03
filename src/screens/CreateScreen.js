@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   ScrollView,
   View,
@@ -9,23 +9,22 @@ import {
 import { Input } from "react-native-elements";
 import { AppHeaderIcons } from "../components/AppHeaderIcons";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import { Image } from "react-native-elements";
 import { CustomButton } from "../components/CustomButton";
 import { THEME } from "../theme";
 import { useDispatch } from "react-redux";
 import { addPost } from "../store/actions/post";
+import { PhotoPicker } from "../components/PhotoPicker";
 
 export const CreateScreen = ({ navigation }) => {
-  const [text, setText] = useState("");
-  const img =
-    "https://static.coindesk.com/wp-content/uploads/2019/01/shutterstock_1012724596-860x430.jpg";
+  const imgRef = useRef();
 
+  const [text, setText] = useState("");
   const { wrapper, textarea } = styles;
 
   const dispatch = useDispatch();
   const saveHandler = () => {
     const post = {
-      img,
+      img: imgRef.current,
       text,
       booked: false,
       id: Date.now().toString(),
@@ -34,6 +33,10 @@ export const CreateScreen = ({ navigation }) => {
 
     dispatch(addPost(post));
     navigation.navigate("Main");
+  };
+
+  const photoPickHandler = imageSrc => {
+    imgRef.current = imageSrc;
   };
 
   return (
@@ -47,17 +50,15 @@ export const CreateScreen = ({ navigation }) => {
             onChangeText={setText}
             multiline
           />
-          <Image
-            source={{
-              uri: img
-            }}
-            style={{ width: 200, height: 200 }}
-          />
+
+          <PhotoPicker onPick={photoPickHandler} />
+
           <CustomButton
             title="Создать пост"
             color={THEME.MAIN_COLOR}
             buttonStyle={{ marginTop: 30 }}
             onClick={saveHandler}
+            disabled={!text}
           />
         </View>
       </TouchableWithoutFeedback>
