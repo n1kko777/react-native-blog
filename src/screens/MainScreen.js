@@ -9,12 +9,20 @@ import { loadPosts } from "../store/actions/post";
 export const MainScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const allPosts = useSelector(state => state.post.allPosts);
+  const loading = useSelector(state => state.post.loading);
 
   useEffect(() => {
     dispatch(loadPosts());
   }, [dispatch]);
 
-  return <PostList navigation={navigation} dataList={allPosts} />;
+  return (
+    <PostList
+      navigation={navigation}
+      dataList={allPosts}
+      loading={loading}
+      onRefresh={() => dispatch(loadPosts())}
+    />
+  );
 };
 
 MainScreen.navigationOptions = ({ navigation }) => ({
