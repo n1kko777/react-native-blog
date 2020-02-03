@@ -1,8 +1,7 @@
 import React from "react";
 import { FlatList, View } from "react-native";
-import { withTheme } from "react-native-elements";
+import { withTheme, Text } from "react-native-elements";
 
-import { DATA } from "../data";
 import { CustomCard } from "../components/CustomCard";
 
 export const PostList = withTheme(({ navigation, theme, dataList }) => {
@@ -19,6 +18,17 @@ export const PostList = withTheme(({ navigation, theme, dataList }) => {
       keyExtractor={keyExtractor}
       data={dataList}
       renderItem={renderItem}
+      ListEmptyComponent={
+        <Text
+          style={{
+            fontFamily: "open-regular",
+            textAlign: "center",
+            marginTop: 30
+          }}
+        >
+          Нет записей
+        </Text>
+      }
     />
   );
 });

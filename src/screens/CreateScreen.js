@@ -19,12 +19,14 @@ export const CreateScreen = ({ navigation }) => {
   const imgRef = useRef();
 
   const [text, setText] = useState("");
+  const [title, setTitle] = useState("");
   const { wrapper, textarea } = styles;
 
   const dispatch = useDispatch();
   const saveHandler = () => {
     const post = {
       img: imgRef.current,
+      title,
       text,
       booked: false,
       id: Date.now().toString(),
@@ -43,6 +45,11 @@ export const CreateScreen = ({ navigation }) => {
     <ScrollView>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={wrapper}>
+          <Input
+            placeholder="Введите заголовок поста"
+            value={title}
+            onChangeText={setTitle}
+          />
           <Input
             inputContainerStyle={textarea}
             placeholder="Введите текст поста"
@@ -94,6 +101,7 @@ const styles = StyleSheet.create({
   },
   textarea: {
     paddingBottom: 10,
+    marginTop: 10,
     marginBottom: 20
   }
 });

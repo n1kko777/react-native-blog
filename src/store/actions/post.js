@@ -1,7 +1,6 @@
 import { LOAD_POSTS, TOGGLE_BOOKED, REMOVE_POST, ADD_POST } from "../types";
-import { DATA } from "../../data";
 
-export const loadPosts = () => ({ type: LOAD_POSTS, payload: DATA });
+export const loadPosts = () => ({ type: LOAD_POSTS, payload: [] });
 
 export const toggleBooked = id => ({ type: TOGGLE_BOOKED, payload: id });
 

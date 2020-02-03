@@ -62,16 +62,17 @@ export const PostScreen = ({ navigation }) => {
     return null;
   }
 
-  const { img, text, date } = post;
+  const { img, title, text, date } = post;
 
   return (
     <ScrollView>
       <Image source={{ uri: img }} style={image} />
       <View style={container}>
         <Text h4 style={h4}>
-          {text}
+          {title}
         </Text>
 
+        <Text style={p}>{text}</Text>
         <Text style={p}>Создано {new Date(date).toLocaleDateString()}</Text>
 
         <CustomButton

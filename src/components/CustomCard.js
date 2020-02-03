@@ -8,7 +8,7 @@ export const CustomCard = ({ item, theme, navigation }) => {
     const { navigate } = navigation;
     navigate("Post", {
       postId: post.id,
-      postTitle: post.text,
+      postTitle: post.title,
       booked: post.booked
     });
   };
@@ -18,7 +18,7 @@ export const CustomCard = ({ item, theme, navigation }) => {
       image={{
         uri: item.img
       }}
-      title={item.text}
+      title={item.title}
     >
       <Text style={{ marginBottom: 10 }}>
         {new Date(item.date).toLocaleDateString()}
