@@ -26,7 +26,17 @@
       "supportsTablet": true,
       "infoPlist":{
         "CFBundleDevelopmentRegion":"ru_RU"
-      }
+      },
+      "bundleIdentifier": "io.github.n1kko777.rn-blog",
+      "buildNumber": "1.0.0"
+    },
+    "android": {
+      "package": "io.github.n1kko777.rn_blog",
+      "versionCode": 1,
+      "permissions": [
+        "CAMERA",
+        "WRITE_EXTERNAL_STORAGE" 
+      ]
     }
   }
 }
